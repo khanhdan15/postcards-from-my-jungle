@@ -1,0 +1,199 @@
+{
+  "language": "Liluvé",
+  "core_words": [
+    {
+      "word": "lu",
+      "meaning": "light"
+    },
+    {
+      "word": "mo",
+      "meaning": "flower"
+    },
+    {
+      "word": "fa",
+      "meaning": "wing"
+    },
+    {
+      "word": "sī",
+      "meaning": "rain"
+    },
+    {
+      "word": "li",
+      "meaning": "to sing/call"
+    },
+    {
+      "word": "nā",
+      "meaning": "cloud"
+    },
+    {
+      "word": "ve",
+      "meaning": "to play"
+    },
+    {
+      "word": "mimi",
+      "meaning": "friend (plural)"
+    },
+    {
+      "word": "rrō",
+      "meaning": "joyful (emphatic)"
+    },
+    {
+      "word": "pui",
+      "meaning": "small fruit"
+    },
+    {
+      "word": "nana",
+      "meaning": "sleep"
+    },
+    {
+      "word": "fe",
+      "meaning": "to fly"
+    },
+    {
+      "word": "rā",
+      "meaning": "love"
+    },
+    {
+      "word": "le",
+      "meaning": "to dance"
+    },
+    {
+      "word": "moi",
+      "meaning": "little flower"
+    },
+    {
+      "word": "fafa",
+      "meaning": "many wings"
+    }
+  ],
+  "creatures": [
+    {
+      "name": "Lufani",
+      "phrase": "li lufani lu fafa-ō",
+      "translation": "I sing bright with wings! (happy)",
+      "voice": "Very soft, airy trill rising in pitch, like a hummingbird fluttering and finishing with a bell-like chime.",
+      "duration_s": 3.2,
+      "sound": "sounds/01-lufani.wav"
+    },
+    {
+      "name": "Momo",
+      "phrase": "le momo mo ve-ō",
+      "translation": "Dance flower, play! (happy)",
+      "voice": "Quick, light fluttering purr with melodic chirps, reminiscent of a kitten purring and a swallow's warble.",
+      "duration_s": 1.7,
+      "sound": "sounds/02-momo.wav"
+    },
+    {
+      "name": "Favasū",
+      "phrase": "fe favasū fa lu-ū",
+      "translation": "Fly wing in the light. (sleepy)",
+      "voice": "Slow, breathy whoosh with trailing sighs, like a gentle night breeze stirring soft leaves.",
+      "duration_s": 6.5,
+      "sound": "sounds/03-favasu.wav"
+    },
+    {
+      "name": "Sīnali",
+      "phrase": "li sīnali sī nā-ē",
+      "translation": "Rain cloud calls! (alarm)",
+      "voice": "Sharp, wavering peep that crescendos to a high, trembling squeak, similar to a startled treefrog.",
+      "duration_s": 4.1,
+      "sound": "sounds/04-sinali.wav"
+    },
+    {
+      "name": "Nanave",
+      "phrase": "nana nanave ve pui-ū",
+      "translation": "Sleepy one dreams of fruit. (sleepy)",
+      "voice": "Long, drawn-out hum with a gentle downward pitch, similar to a contented sigh or distant owl's hoot.",
+      "duration_s": 8.3,
+      "sound": "sounds/05-nanave.wav"
+    },
+    {
+      "name": "Rālei",
+      "phrase": "rā rālei mo lu-ō",
+      "translation": "Love flower and light! (happy)",
+      "voice": "High, sweet, warbling coo, bright and uplifting, like a morning dove greeting the dawn.",
+      "duration_s": 2.8,
+      "sound": "sounds/06-ralei.wav"
+    },
+    {
+      "name": "Puilu",
+      "phrase": "ve puilu pui mimi-ō",
+      "translation": "Play fruit with friends! (happy)",
+      "voice": "Fast, bubbly popping sounds interspersed with cheerful squeaks, like water droplets in a tiny spring.",
+      "duration_s": 2.1,
+      "sound": "sounds/07-puilu.wav"
+    },
+    {
+      "name": "Mirefa",
+      "phrase": "le mirefa mo fa-ō",
+      "translation": "Dance among flower wings! (happy)",
+      "voice": "Rapid, twinkling chirrups with rolling vibrato, like two finches trading songs.",
+      "duration_s": 2.6,
+      "sound": "sounds/08-mirefa.wav"
+    },
+    {
+      "name": "Sīnū",
+      "phrase": "li sīnū sī nā-ū",
+      "translation": "Sing rain from the clouds. (sleepy)",
+      "voice": "Soft, misty taps growing fainter, resembling rainfall on thick leaves mid-dream.",
+      "duration_s": 7.0,
+      "sound": "sounds/09-sinu.wav"
+    },
+    {
+      "name": "Fanolū",
+      "phrase": "fe fanolū fa lu fafa-ē",
+      "translation": "Fly, wing of many lights! (alarm)",
+      "voice": "Tense, repeated trills escalating in pitch, ending with a shrill, vibrating buzz like a startled cicada.",
+      "duration_s": 4.8,
+      "sound": "sounds/10-fanolu.wav"
+    },
+    {
+      "name": "Monoi",
+      "phrase": "rā monoi moi lu-ō",
+      "translation": "Love little flower's light! (happy)",
+      "voice": "Tender, very gentle high-pitch trill, as if softly twinkling windchimes in morning light.",
+      "duration_s": 1.9,
+      "sound": "sounds/11-monoi.wav"
+    },
+    {
+      "name": "Lumimi",
+      "phrase": "li lumimi lu mimi-ō",
+      "translation": "Sing light to the friends! (happy)",
+      "voice": "Rapid, crystal-clear peeps sprinkled with melodious whistle, reminiscent of a chorus of tiny birds.",
+      "duration_s": 2.3,
+      "sound": "sounds/12-lumimi.wav"
+    },
+    {
+      "name": "Faneli",
+      "phrase": "fe faneli fa nā-ū",
+      "translation": "Fly wing into the cloud. (sleepy)",
+      "voice": "Long, slow whoosh, fading gracefully, echoing the sound of silk ribbons whisked through the air.",
+      "duration_s": 6.7,
+      "sound": "sounds/13-faneli.wav"
+    },
+    {
+      "name": "Morra",
+      "phrase": "li morra mo rrō-ō",
+      "translation": "I sing joyful for the flower! (very happy)",
+      "voice": "Exuberant, fast trill with a rolling 'rr' in the middle, like a rapturous songbird and monarch butterfly wingbeats.",
+      "duration_s": 2.5,
+      "sound": "sounds/14-morra.wav"
+    },
+    {
+      "name": "Mimisi",
+      "phrase": "ve mimisi mimi mo-ō",
+      "translation": "Play with many friends and flower! (happy)",
+      "voice": "Chattering, staccato series of high chirps like a cluster of fluffy chicks celebrating.",
+      "duration_s": 1.8,
+      "sound": "sounds/15-mimisi.wav"
+    },
+    {
+      "name": "Sīfafa",
+      "phrase": "sī sīfafa fafa lū-ē",
+      "translation": "Wings and rain are everywhere! (alarm)",
+      "voice": "Stuttering, wet, sharp notes, as if a shower spins on butterfly wings; a touch of urgency like a shaken bell.",
+      "duration_s": 3.6,
+      "sound": "sounds/16-sifafa.wav"
+    }
+  ]
+}
