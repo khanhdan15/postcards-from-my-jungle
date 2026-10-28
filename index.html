@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postcards from my jungle</title>
+    <meta name="description" content="Fairy creatures from an imaginary jungle: diffusion-made images, Stable Audio sounds and an invented language.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='13'%3E%F0%9F%A6%8B%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- floating sparkles (decoration only) -->
+    <div class="sparkles" aria-hidden="true"></div>
+
+    <!-- Welcome card: also unlocks sound in the browser -->
+    <div class="welcome" id="welcome" role="dialog" aria-labelledby="welcome-title">
+        <div class="welcome-card">
+            <p class="stamp">✿</p>
+            <h1 id="welcome-title">Postcards from my jungle</h1>
+            <p>Somewhere past the last butterfly, a small jungle grew out of thousands of photos of real animals.
+                The creatures that live there are a little blurry, very soft, and they all speak <b class="lang-name">Liluvé</b>.</p>
+            <p>Flip through the postcards. Press <b>listen</b> to hear each creature speak.</p>
+            <button type="button" id="enter">Enter the jungle 🌿</button>
+        </div>
+    </div>
+
+    <header class="top">
+        <p class="kicker">a field album of imagined animals</p>
+        <h2>Postcards from my jungle</h2>
+    </header>
+
+    <main>
+        <section class="slideshow" aria-roledescription="carousel" aria-label="Creatures">
+            <button type="button" class="arrow prev" id="prev" aria-label="Previous creature">‹</button>
+
+            <article class="postcard" id="postcard" aria-live="polite">
+                <div class="picture">
+                    <img id="main-image" src="" alt="">
+                    <span class="postmark" id="postmark"></span>
+                </div>
+                <div class="message">
+                    <p class="number" id="number"></p>
+                    <h3 id="name"></h3>
+                    <p class="phrase" id="phrase"></p>
+                    <p class="translation" id="translation"></p>
+                    <button type="button" class="listen" id="listen">
+                        <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                        <span id="listen-label">listen</span>
+                        <span class="duration" id="duration"></span>
+                    </button>
+                    <p class="sightings-label">other sightings</p>
+                    <div class="sightings" id="sightings"></div>
+                </div>
+            </article>
+
+            <button type="button" class="arrow next" id="next" aria-label="Next creature">›</button>
+        </section>
+
+        <nav class="dots" id="dots" aria-label="Choose a creature"></nav>
+
+        <section class="album">
+            <h4>All 50 sightings</h4>
+            <div class="album-grid" id="album"></div>
+        </section>
+
+        <section class="dictionary">
+            <h4>A little <span class="lang-name">Liluvé</span> dictionary</h4>
+            <dl id="dictionary"></dl>
+        </section>
+    </main>
+
+    <footer>
+        Images: a diffusion model I trained from scratch on animal faces + butterflies ·
+        Sounds: Stable Audio Open 1.0 · Language: GPT-4.1 with a structured prompt ·
+        <a href="https://github.com/khanhdan15/postcards-from-my-jungle">code on GitHub</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
