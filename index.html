@@ -55,44 +55,45 @@
     </header>
 
     <main>
-        <section class="clearing" aria-roledescription="carousel" aria-label="Creatures">
-            <button type="button" class="stone prev" id="prev" aria-label="Previous creature">❮</button>
+        <section class="studio" id="postcard" aria-roledescription="carousel" aria-label="Creatures" aria-live="polite">
+            <!-- photos of this creature, scattered like a collage -->
+            <div class="collage" id="sightings" aria-label="Sightings of this creature"></div>
 
-            <article class="tale" id="postcard" aria-live="polite">
-                <div class="ring" id="ring">
-                    <div class="halo"></div>
-                    <img id="main-image" src="" alt="">
-                    <span class="sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                    <svg class="mushrooms" viewBox="0 0 300 70" aria-hidden="true">
-                        <g filter="url(#paint)">
-                            <path class="pad" d="M10 50 a34 13 0 1 0 68 0 a34 13 0 1 0 -68 0 Z M44 50 L78 46 L78 54 Z"/>
-                            <path class="pad dark" d="M220 54 a40 14 0 1 0 80 0 a40 14 0 1 0 -80 0 Z M260 54 L220 50 L220 58 Z"/>
-                            <g class="lotus" transform="translate(48 42)"><path d="M0 0 C-6 -12 -4 -22 0 -28 C4 -22 6 -12 0 0Z"/><path d="M0 0 C-14 -8 -18 -16 -16 -22 C-8 -18 -2 -10 0 0Z"/><path d="M0 0 C14 -8 18 -16 16 -22 C8 -18 2 -10 0 0Z"/></g>
-                            <g class="lotus" transform="translate(262 46) scale(.75)"><path d="M0 0 C-6 -12 -4 -22 0 -28 C4 -22 6 -12 0 0Z"/><path d="M0 0 C-14 -8 -18 -16 -16 -22 C-8 -18 -2 -10 0 0Z"/><path d="M0 0 C14 -8 18 -16 16 -22 C8 -18 2 -10 0 0Z"/></g>
-                        </g>
-                    </svg>
-                    <span class="postmark" id="postmark"></span>
+            <!-- the record player: each creature is a record, its picture is the label -->
+            <div class="deck glass-plate" id="deck">
+                <div class="platter">
+                    <div class="record" id="record">
+                        <img class="label" id="main-image" src="" alt="">
+                        <span class="spindle"></span>
+                    </div>
                 </div>
+                <div class="arm-base"><span></span></div>
+                <div class="arm" id="arm"><span class="headshell"></span></div>
+                <button type="button" class="start-stop" id="listen" aria-label="Start or stop the creature's song">
+                    <span id="listen-label">start · stop</span>
+                </button>
+                <label class="fader" title="volume">
+                    <input type="range" id="volume" min="0" max="1" step="0.05" value="0.9" aria-label="Volume">
+                </label>
+                <span class="brand">Liluvé · 33⅓</span>
+            </div>
 
-                <div class="page">
-                    <p class="number" id="number"></p>
-                    <h3 id="name"></h3>
-                    <p class="phrase" id="phrase"></p>
-                    <p class="translation" id="translation"></p>
-                    <button type="button" class="lantern" id="listen">
-                        <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                        <span id="listen-label">hear its song</span>
-                        <span class="duration" id="duration"></span>
-                    </button>
-                    <p class="sightings-label">also spotted</p>
-                    <div class="sightings" id="sightings"></div>
+            <!-- the record sleeve: name, phrase and translation -->
+            <div class="page sleeve">
+                <p class="number" id="number"></p>
+                <h3 id="name"></h3>
+                <p class="phrase" id="phrase"></p>
+                <p class="translation" id="translation"></p>
+                <p class="meta"><span id="postmark"></span> · <span id="duration"></span></p>
+                <div class="skip">
+                    <button type="button" class="stone" id="prev" aria-label="Previous record">❮</button>
+                    <button type="button" class="stone" id="next" aria-label="Next record">❯</button>
                 </div>
-            </article>
+            </div>
 
-            <button type="button" class="stone next" id="next" aria-label="Next creature">❯</button>
+            <!-- the record crate: one pill per creature -->
+            <nav class="crate" id="dots" aria-label="Choose a record"></nav>
         </section>
-
-        <nav class="path" id="dots" aria-label="Choose a creature"></nav>
 
         <section class="scroll album">
             <h4>Every creature seen by the pond</h4>

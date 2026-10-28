@@ -24,28 +24,33 @@ function el(tag, attrs = {}, text) {
     return node;
 }
 
-// ---------- sound ----------
+// ---------- sound: the record player ----------
+// start-stop spins the record, the tonearm swings onto it, then the creature's sound plays.
 function stopSound() {
     if (audio) { audio.pause(); audio.currentTime = 0; }
-    $("listen").classList.remove("playing");
-    $("ring").classList.remove("singing");
-    $("listen-label").textContent = "listen";
+    $("deck").classList.remove("playing");
 }
 
 function playSound() {
     const c = creatures[current];
     if (!c) return;
     if (audio && !audio.paused) { stopSound(); return; }
+    $("deck").classList.add("playing");
     audio = new Audio(c.sound);
-    audio.addEventListener("ended", stopSound);
-    audio.play().then(() => {
-        $("listen").classList.add("playing");
-        $("ring").classList.add("singing");
-        $("listen-label").textContent = "singing…";
-    }).catch(() => { $("listen-label").textContent = "tap again"; });
+    audio.volume = Number($("volume").value);
+    audio.addEventListener("ended", () => setTimeout(stopSound, 600));   // let the record spin a moment after
+    // wait for the arm to land on the record before the sound starts
+    setTimeout(() => {
+        if (!$("deck").classList.contains("playing")) return;
+        audio.play().catch(() => stopSound());
+    }, 900);
 }
+$("volume").addEventListener("input", () => { if (audio) audio.volume = Number($("volume").value); });
 
-// ---------- one creature ----------
+// collage positions: [left %, top %, width %, rotation]
+const SPOTS = [[2, 2, 62, -6], [34, 10, 58, 5], [6, 44, 56, 3], [38, 50, 54, -4]];
+
+// ---------- one creature = one record ----------
 function show(k, imageIndex) {
     stopSound();
     current = (k + creatures.length) % creatures.length;
@@ -53,26 +58,27 @@ function show(k, imageIndex) {
     const images = imagesOf(current);
     currentImage = imageIndex ?? images[0];
 
-    const card = $("postcard");
-    card.classList.remove("flip"); void card.offsetWidth; card.classList.add("flip");   // replay the appear animation
-
     $("main-image").src = imagePath(currentImage);
-    $("main-image").alt = `${c.name}, an imagined forest creature (sighting ${currentImage + 1} of ${IMAGE_COUNT})`;
-    $("postmark").textContent = `spotted near the ${["lily pond", "willow", "lotus bed", "mossy hill", "old pine"][currentImage % 5]} · #${currentImage + 1}`;
-    $("number").textContent = `creature ${current + 1} of ${creatures.length}`;
+    $("main-image").alt = `${c.name}, an imagined creature, on the record label`;
+    $("postmark").textContent = `spotted near the ${["lily pond", "willow", "lotus bed", "mossy hill", "old pine"][currentImage % 5]}, #${currentImage + 1}`;
+    $("number").textContent = `record ${current + 1} of ${creatures.length}`;
     $("name").textContent = c.name;
     $("phrase").textContent = `“${c.phrase}”`;
     $("translation").textContent = c.translation;
-    $("duration").textContent = `${Number(c.duration_s).toFixed(1)} s`;
+    $("duration").textContent = `${Number(c.duration_s).toFixed(1)} s song`;
 
-    $("sightings").replaceChildren(...images.map((i) => {
-        const b = el("button", { type: "button", className: i === currentImage ? "current" : "", ariaLabel: `Show sighting ${i + 1}` });
+    $("sightings").replaceChildren(...images.map((i, n) => {
+        const [x, y, w, r] = SPOTS[n % SPOTS.length];
+        const b = el("button", { type: "button", className: i === currentImage ? "current" : "", ariaLabel: `Put sighting ${i + 1} on the record` });
+        b.style.cssText = `left:${x}%; top:${y}%; width:${w}%; aspect-ratio:1; --rest: rotate(${r}deg); transform: rotate(${r}deg); z-index:${i === currentImage ? 10 : n + 1}`;
         b.appendChild(el("img", { src: imagePath(i), alt: "", loading: "lazy" }));
         b.addEventListener("click", () => show(current, i));
         return b;
     }));
 
     document.querySelectorAll("#dots button").forEach((d, i) => d.classList.toggle("current", i === current));
+    const pill = document.querySelectorAll("#dots button")[current];
+    if (pill) pill.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
     document.querySelectorAll("#album button").forEach((b, i) => b.classList.toggle("current", i === currentImage));
 }
 
@@ -87,7 +93,9 @@ function build(data) {
     document.querySelectorAll(".lang-name").forEach((n) => { n.textContent = data.language; });
 
     $("dots").replaceChildren(...creatures.map((c, k) => {
-        const d = el("button", { type: "button", ariaLabel: c.name, title: c.name });
+        const d = el("button", { type: "button", ariaLabel: `Play the record of ${c.name}`, title: c.name });
+        d.style.backgroundImage = `url(${imagePath(k)})`;
+        d.appendChild(el("span", {}, c.name));
         d.addEventListener("click", () => show(k));
         return d;
     }));
@@ -120,11 +128,11 @@ document.addEventListener("keydown", (e) => {
     if (e.key === " " && e.target === document.body) { e.preventDefault(); playSound(); }
 });
 let touchX = null;
-$("postcard").addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
-$("postcard").addEventListener("touchend", (e) => {
+$("deck").addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+$("deck").addEventListener("touchend", (e) => {
     if (touchX === null) return;
     const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));   // swipe the record player
     touchX = null;
 });
 
