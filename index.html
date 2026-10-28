@@ -4,77 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postcards from my jungle</title>
-    <meta name="description" content="Fairy creatures from an imaginary jungle: diffusion-made images, Stable Audio sounds and an invented language.">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='13'%3E%F0%9F%A6%8B%3C/text%3E%3C/svg%3E">
+    <meta name="description" content="A fairy-tale forest of imagined creatures: diffusion-made images, Stable Audio sounds and an invented language.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='13'%3E%F0%9F%8D%84%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- floating sparkles (decoration only) -->
-    <div class="sparkles" aria-hidden="true"></div>
+    <!-- the forest (drawn by script.js): sky, moon, tree layers, fog, fireflies -->
+    <div class="forest" id="forest" aria-hidden="true">
+        <div class="moon"></div>
+        <div class="trees" data-depth="4"></div>
+        <div class="fog fog-far"></div>
+        <div class="trees" data-depth="3"></div>
+        <div class="trees" data-depth="2"></div>
+        <div class="fog fog-near"></div>
+        <div class="trees" data-depth="1"></div>
+        <div class="fireflies"></div>
+    </div>
 
-    <!-- Welcome card: also unlocks sound in the browser -->
-    <div class="welcome" id="welcome" role="dialog" aria-labelledby="welcome-title">
-        <div class="welcome-card">
-            <p class="stamp">✿</p>
-            <h1 id="welcome-title">Postcards from my jungle</h1>
-            <p>Somewhere past the last butterfly, a small jungle grew out of thousands of photos of real animals.
-                The creatures that live there are a little blurry, very soft, and they all speak <b class="lang-name">Liluvé</b>.</p>
-            <p>Flip through the postcards. Press <b>listen</b> to hear each creature speak.</p>
-            <button type="button" id="enter">Enter the jungle 🌿</button>
+    <!-- storybook cover: also unlocks sound in the browser -->
+    <div class="cover" id="welcome" role="dialog" aria-labelledby="welcome-title">
+        <div class="book">
+            <p class="ornament">❦</p>
+            <h1 id="welcome-title">Postcards from my Jungle</h1>
+            <p class="once"><span class="dropcap">O</span>nce upon a time, past the last butterfly, a little forest grew out of
+                thousands of photos of real animals. The creatures who live there are soft and a bit blurry,
+                and they all speak a gentle tongue called <i class="lang-name">Liluvé</i>.</p>
+            <p class="hint">Follow the fireflies. Wake each creature to hear its song.</p>
+            <button type="button" id="enter">Step into the forest</button>
         </div>
     </div>
 
-    <header class="top">
-        <p class="kicker">a field album of imagined animals</p>
-        <h2>Postcards from my jungle</h2>
+    <header class="title">
+        <p class="kicker">~ a fairy tale field album ~</p>
+        <h2>Postcards from my Jungle</h2>
     </header>
 
     <main>
-        <section class="slideshow" aria-roledescription="carousel" aria-label="Creatures">
-            <button type="button" class="arrow prev" id="prev" aria-label="Previous creature">‹</button>
+        <section class="clearing" aria-roledescription="carousel" aria-label="Creatures">
+            <button type="button" class="stone prev" id="prev" aria-label="Previous creature">❮</button>
 
-            <article class="postcard" id="postcard" aria-live="polite">
-                <div class="picture">
+            <article class="tale" id="postcard" aria-live="polite">
+                <div class="ring" id="ring">
+                    <div class="halo"></div>
                     <img id="main-image" src="" alt="">
+                    <span class="sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                    <svg class="mushrooms" viewBox="0 0 300 70" aria-hidden="true">
+                        <g class="shroom" transform="translate(38 30)"><rect x="-4" y="6" width="8" height="26" rx="4"/><path d="M-22 8 Q0 -24 22 8 Z"/><circle cx="-8" cy="-2" r="2.6"/><circle cx="6" cy="-6" r="2"/></g>
+                        <g class="shroom small" transform="translate(70 44) scale(.6)"><rect x="-4" y="6" width="8" height="26" rx="4"/><path d="M-22 8 Q0 -24 22 8 Z"/><circle cx="-6" cy="-3" r="2.6"/></g>
+                        <g class="shroom" transform="translate(252 34) scale(.85)"><rect x="-4" y="6" width="8" height="26" rx="4"/><path d="M-22 8 Q0 -24 22 8 Z"/><circle cx="7" cy="-3" r="2.6"/><circle cx="-7" cy="-6" r="1.8"/></g>
+                        <g class="shroom small" transform="translate(222 48) scale(.5)"><rect x="-4" y="6" width="8" height="26" rx="4"/><path d="M-22 8 Q0 -24 22 8 Z"/></g>
+                    </svg>
                     <span class="postmark" id="postmark"></span>
                 </div>
-                <div class="message">
+
+                <div class="page">
                     <p class="number" id="number"></p>
                     <h3 id="name"></h3>
                     <p class="phrase" id="phrase"></p>
                     <p class="translation" id="translation"></p>
-                    <button type="button" class="listen" id="listen">
-                        <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                        <span id="listen-label">listen</span>
+                    <button type="button" class="lantern" id="listen">
+                        <span class="flame" aria-hidden="true"></span>
+                        <span id="listen-label">hear its song</span>
                         <span class="duration" id="duration"></span>
                     </button>
-                    <p class="sightings-label">other sightings</p>
+                    <p class="sightings-label">also seen in the wood</p>
                     <div class="sightings" id="sightings"></div>
                 </div>
             </article>
 
-            <button type="button" class="arrow next" id="next" aria-label="Next creature">›</button>
+            <button type="button" class="stone next" id="next" aria-label="Next creature">❯</button>
         </section>
 
-        <nav class="dots" id="dots" aria-label="Choose a creature"></nav>
+        <nav class="path" id="dots" aria-label="Choose a creature"></nav>
 
-        <section class="album">
-            <h4>All 50 sightings</h4>
+        <section class="scroll album">
+            <h4>❧ Every creature seen in the wood ❧</h4>
             <div class="album-grid" id="album"></div>
         </section>
 
-        <section class="dictionary">
-            <h4>A little <span class="lang-name">Liluvé</span> dictionary</h4>
+        <section class="scroll dictionary">
+            <h4>❧ A little <span class="lang-name">Liluvé</span> lexicon ❧</h4>
             <dl id="dictionary"></dl>
         </section>
     </main>
 
     <footer>
-        Images: a diffusion model I trained from scratch on animal faces + butterflies ·
-        Sounds: Stable Audio Open 1.0 · Language: GPT-4.1 with a structured prompt ·
+        Creatures: a diffusion model I trained from scratch on animal faces + butterflies ·
+        Songs: Stable Audio Open 1.0 · Language: GPT-4.1 with a structured prompt ·
         <a href="https://github.com/khanhdan15/postcards-from-my-jungle">code on GitHub</a>
     </footer>
 
